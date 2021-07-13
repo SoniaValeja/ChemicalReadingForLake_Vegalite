@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "Top 5 measures.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+  },
+  "vconcat": [
+    {
+      "mark": {"type": "bar", "tooltip": true},
+      "height": 250,
+      "width": 500,
+      "transform": [
+        {
+          "aggregate": [{"op": "sum", "field": "value", "as": "sum_value"}],
+          "groupby": ["measure"]
+        },
+        {"filter": "datum.sum_value > 200000"}
+      ],
+      "encoding": {
+        "y": {
+          "field": "sum_value",
+          "type": "quantitative",
+          "title": "Sum of Values"
+        },
+        "x": {"field": "measure", "type": "nominal", "title": "Measures"},
+        "color": {"field": "measure", "title": "Top Measures"}
+      },
+      "view": {"stroke": null}
+    },
+    {
+      "hconcat": [
+        {
+          "mark": {"type": "bar", "tooltip": true},
+          "height": 300,
+          "width": 300,
+          "transform": [
+            {"filter": {"field": "location", "equal": "Chai"}},
+            {
+              "filter": {
+                "field": "measure",
+                "oneOf": [
+                  "Calcium",
+                  "Iron",
+                  "Total dissolved salts",
+                  "Total hardness",
+                  "Bicarbonates"
+                ]
+              }
+            }
+          ],
+          "encoding": {
+            "y": {
+              "field": "value",
+              "type": "quantitative",
+              "title": "Sum of Values",
+              "aggregate": "sum"
+            },
+            "x": {
+              "field": "measure",
+              "type": "nominal",
+              "title": "Top Measures for Chai"
+            },
+            "color": {
+              "field": "measure",
+              "type": "nominal",
+              "title": "Top Measures"
+            }
+          },
+          "view": {"stroke": null}
+        },
+        {
+          "mark": {"type": "bar", "tooltip": true},
+          "height": 300,
+          "width": 300,
+          "transform": [
+            {"filter": {"field": "location", "equal": "Achara"}},
+            {
+              "filter": {
+                "field": "measure",
+                "oneOf": [
+                  "Calcium",
+                  "Iron",
+                  "Total dissolved salts",
+                  "Total hardness",
+                  "Bicarbonates"
+                ]
+              }
+            }
+          ],
+          "encoding": {
+            "y": {
+              "field": "value",
+              "type": "quantitative",
+              "title": "Sum of Values",
+              "aggregate": "sum"
+            },
+            "x": {
+              "field": "measure",
+              "type": "nominal",
+              "title": "Top Measures of Achara"
+            },
+            "color": {
+              "field": "measure",
+              "type": "nominal",
+              "title": "Top Measures"
+            }
+          },
+          "view": {"stroke": null}
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": "#333",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

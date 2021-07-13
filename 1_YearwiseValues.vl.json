@@ -1,0 +1,46 @@
+{
+  "data": {
+    "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+  },
+  "vconcat": [
+    {
+      "width": 550,
+      "height": 300,
+      "mark": {"type": "area", "tooltip": true},
+      "encoding": {
+        "x": {
+          "timeUnit": "year",
+          "field": "sample date",
+          "axis": {"format": "%Y"},
+          "title": "Year"
+        },
+        "y": {"aggregate": "sum", "field": "value"},
+        "color": {"field": "location", "title": "Location"}
+      }
+    },
+    {
+      "width": 550,
+      "height": 200,
+      "mark": {"type": "line", "tooltip": true},
+      "encoding": {
+        "x": {
+          "timeUnit": "year",
+          "field": "sample date",
+          "type": "ordinal",
+          "title": "Year"
+        },
+        "y": {"aggregate": "sum", "field": "value", "type": "quantitative"},
+        "color": {"field": "location"}
+      },
+      "transform": [
+        {"filter": {"field": "location", "oneOf": ["Chai", "Achara"]}}
+      ]
+    }
+  ],
+  "config": {
+    "background": "#333",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

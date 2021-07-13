@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+  },
+  "vconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+      },
+      "height": 250,
+      "width": 400,
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "tooltip": true,
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {"field": "location", "type": "nominal", "title": "Location"},
+        "y": {"aggregate": "sum", "field": "value", "type": "quantitative"},
+        "size": {
+          "aggregate": "sum",
+          "field": "value",
+          "type": "quantitative",
+          "title": "value",
+          "legend": {"clipHeight": 5},
+          "scale": {"rangeMax": 2000}
+        },
+        "color": {"field": "location"}
+      },
+      "config": {}
+    },
+    {
+      "hconcat": [
+        {
+          "transform": [{"filter": {"field": "location", "equal": "Chai"}}],
+          "mark": {"type": "bar", "tooltip": true},
+          "width": 250,
+          "height": 300,
+          "encoding": {
+            "x": {
+              "timeUnit": "year",
+              "field": "sample date",
+              "axis": {"format": "%Y"},
+              "title": "Year"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "value",
+              "title": "Sum of Values (Location:Chai)"
+            },
+            "color": {"field": "location", "title": "Location"}
+          }
+        },
+        {
+          "transform": [{"filter": {"field": "location", "equal": "Achara"}}],
+          "mark": {"type": "bar", "tooltip": true},
+          "width": 200,
+          "height": 300,
+          "encoding": {
+            "x": {"timeUnit": "year", "field": "sample date", "title": "Year"},
+            "y": {
+              "aggregate": "sum",
+              "field": "value",
+              "title": "Sum of Values (Location:Achara)"
+            },
+            "color": {"field": "location", "title": "Location"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": "#333",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}

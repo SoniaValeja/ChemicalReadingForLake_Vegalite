@@ -1,0 +1,176 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+  },
+  "vconcat": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/SoniaValeja/VA_GroupWork2/main/readings.csv"
+      },
+      "height": 250,
+      "width": 400,
+      "mark": {
+        "type": "circle",
+        "opacity": 0.8,
+        "stroke": "black",
+        "tooltip": true,
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {"field": "location", "type": "nominal", "title": "Location"},
+        "y": {"aggregate": "sum", "field": "value", "type": "quantitative"},
+        "size": {
+          "aggregate": "sum",
+          "field": "value",
+          "type": "quantitative",
+          "title": "value",
+          "legend": {"clipHeight": 5},
+          "scale": {"rangeMax": 2000}
+        },
+        "color": {"field": "location"}
+      },
+      "config": {}
+    },
+    {
+      "hconcat": [
+        {
+          "transform": [{"filter": {"field": "location", "equal": "Chai"}}],
+          "mark": {"type": "bar", "tooltip": true},
+          "width": 250,
+          "height": 300,
+          "encoding": {
+            "x": {
+              "timeUnit": "year",
+              "field": "sample date",
+              "axis": {"format": "%Y"},
+              "title": "Year"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "value",
+              "title": "Sum of Values (Location:Chai)"
+            },
+            "color": {"field": "location", "title": "Location"}
+          }
+        },
+        {
+          "transform": [{"filter": {"field": "location", "equal": "Achara"}}],
+          "mark": {"type": "bar", "tooltip": true},
+          "width": 200,
+          "height": 300,
+          "encoding": {
+            "x": {"timeUnit": "year", "field": "sample date", "title": "Year"},
+            "y": {
+              "aggregate": "sum",
+              "field": "value",
+              "title": "Sum of Values (Location:Achara)"
+            },
+            "color": {"field": "location", "title": "Location"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "background": "#333",
+    "title": {"color": "#fff"},
+    "style": {"guide-label": {"fill": "#fff"}, "guide-title": {"fill": "#fff"}},
+    "axis": {"domainColor": "#fff", "gridColor": "#888", "tickColor": "#fff"}
+  }
+}
+
+
+-------------------
+CSS File 
+
+
+{
+  "background": "#ffffff",
+  "title": {
+    "anchor": "start",
+    "color": "#000000",
+    "font": "Benton Gothic Bold, sans-serif",
+    "fontSize": 22,
+    "fontWeight": "normal"
+  },
+  "arc": {"fill": "#82c6df"},
+  "area": {"fill": "#82c6df"},
+  "line": {"stroke": "#82c6df", "strokeWidth": 2},
+  "path": {"stroke": "#82c6df"},
+  "rect": {"fill": "#82c6df"},
+  "shape": {"stroke": "#82c6df"},
+  "symbol": {"fill": "#82c6df", "size": 30},
+  "axis": {
+    "labelFont": "Benton Gothic, sans-serif",
+    "labelFontSize": 11.5,
+    "labelFontWeight": "normal",
+    "titleFont": "Benton Gothic Bold, sans-serif",
+    "titleFontSize": 13,
+    "titleFontWeight": "normal"
+  },
+  "axisX": {"labelAngle": 0, "labelPadding": 4, "tickSize": 3},
+  "axisY": {
+    "labelBaseline": "middle",
+    "maxExtent": 45,
+    "minExtent": 45,
+    "tickSize": 2,
+    "titleAlign": "left",
+    "titleAngle": 0,
+    "titleX": -45,
+    "titleY": -11
+  },
+  "legend": {
+    "labelFont": "Benton Gothic, sans-serif",
+    "labelFontSize": 11.5,
+    "symbolType": "square",
+    "titleFont": "Benton Gothic Bold, sans-serif",
+    "titleFontSize": 13,
+    "titleFontWeight": "normal"
+  },
+  "range": {
+    "category": [
+      "#ec8431",
+      "#829eb1",
+      "#c89d29",
+      "#3580b1",
+      "#adc839",
+      "#ab7fb4"
+    ],
+    "diverging": [
+      "#e68a4f",
+      "#f4bb6a",
+      "#f9e39c",
+      "#dadfe2",
+      "#a6b7c6",
+      "#849eae"
+    ],
+    "heatmap": [
+      "#fbf2c7",
+      "#f9e39c",
+      "#f8d36e",
+      "#f4bb6a",
+      "#e68a4f",
+      "#d15a40",
+      "#ab4232"
+    ],
+    "ordinal": [
+      "#fbf2c7",
+      "#f9e39c",
+      "#f8d36e",
+      "#f4bb6a",
+      "#e68a4f",
+      "#d15a40",
+      "#ab4232"
+    ],
+    "ramp": [
+      "#fbf2c7",
+      "#f9e39c",
+      "#f8d36e",
+      "#f4bb6a",
+      "#e68a4f",
+      "#d15a40",
+      "#ab4232"
+    ]
+  }
+}
